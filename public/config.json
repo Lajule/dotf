@@ -1,0 +1,18 @@
+{
+    "variables": {
+	"foo": "bar"
+    },
+    "dotfiles": [
+	{
+	    "file": ".tmux.conf"
+	},
+	{
+	    "file": ".emacs.d",
+	    "children": [
+		{
+		    "file": "init.el"
+		}
+	    ]
+	}
+    ]
+}
