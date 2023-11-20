@@ -9,12 +9,12 @@ interface TreeNodeProps {
 export const TreeNode: FC<TreeNodeProps> = ({node}) => {
   const [collapsed, setCollapsed] = useState(false);
 
-    let elem;
-    if (node.children !== undefined) {
-	elem = <button onClick={() => setCollapsed(prev => !prev)}>{collapsed ? "-" : "+"}</button>
-    } else {
-	elem = "|";
-    }
+  let elem;
+  if (node.children !== undefined) {
+    elem = <button onClick={() => setCollapsed(prev => !prev)}>{collapsed ? "-" : "+"}</button>
+  } else {
+    elem = "|";
+  }
 
   return (
     <li>
@@ -27,4 +27,3 @@ export const TreeNode: FC<TreeNodeProps> = ({node}) => {
     </li>
   );
 }
-
