@@ -18,7 +18,7 @@ export const TreeNode: FC<TreeNodeProps> = ({node}) => {
 
   return (
     <li>
-      <div>{elem} <span>{node.file}</span></div>
+      <div>{elem} <button>{node.file}</button></div>
       {node.children !== undefined && collapsed &&
         <ul>
           <Tree dotfiles={node.children} />
