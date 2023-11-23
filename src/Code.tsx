@@ -10,11 +10,11 @@ hljs.registerLanguage('json', json);
 hljs.registerLanguage('yaml', yaml);
 hljs.configure({ignoreUnescapedHTML: true});
 
-interface CodeBlockProps {
+interface CodeProps {
   content: string;
 }
 
-export const CodeBlock: FC<CodeBlockProps> = ({content}) => {
+export const Code: FC<CodeProps> = ({content}) => {
   const ref = useRef<HTMLPreElement>(null);
 
   useEffect(() => {

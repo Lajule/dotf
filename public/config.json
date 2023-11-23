@@ -1,7 +1,10 @@
 {
-    "variables": {
-	"foo": "bar"
-    },
+    "variables": [
+	{
+	    "name": "foo",
+	    "value": "bar"
+	}
+    ],
     "dotfiles": [
 	{
 	    "file": ".tmux.conf"
