@@ -5,3 +5,8 @@
   flex-direction: row;
   font-family: -apple-system, "system-ui", "Segoe UI", "Helvetica Neue", Helvetica;
 }
+
+.file {
+  display: flex;
+  flex-direction: row;
+}
