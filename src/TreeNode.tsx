@@ -1,6 +1,6 @@
 import {FC, useState} from 'react';
-import {Node} from './types';
 import {Tree} from './Tree';
+import {Node} from './types';
 
 interface TreeNodeProps {
   node: Node

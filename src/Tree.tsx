@@ -9,8 +9,8 @@ interface TreeProps {
 export const Tree: FC<TreeProps> = ({ dotfiles }) => {
   return (
     <ul>
-      {dotfiles.map((node) => (
-        <TreeNode node={node} />
+      {dotfiles.map((node, i) => (
+        <TreeNode key={node.file + i} node={node}/>
       ))}
     </ul>
   );

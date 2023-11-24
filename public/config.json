@@ -3,6 +3,10 @@
 	{
 	    "name": "foo",
 	    "value": "bar"
+	},
+	{
+	    "name": "baz",
+	    "value": "foo"
 	}
     ],
     "dotfiles": [
