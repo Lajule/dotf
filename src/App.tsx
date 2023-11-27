@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react';
+import {saveAs} from 'file-saver';
 import Mustache from 'mustache';
+import JSZip from 'jszip';
 import './App.css';
 import {Code} from './Code';
 import {Form} from './Form';
-import {Tree} from './Tree';
+import {Files} from './Files';
 import {Config} from './types';
 
 const sampleCode = '{"foo": "{{bar}}"}';
@@ -11,19 +13,28 @@ const sampleCode = '{"foo": "{{bar}}"}';
 function App() {
   const [config, setConfig] = useState<Config>();
 
-  const fetchDotfiles = async () => {
+  const fetchConfig = async () => {
     const response = await fetch('config.json');
     setConfig(await response.json());
+
+
+    const zip = new JSZip();
+    zip.file("Hello.txt", "Hello World\n");
+    zip.generateAsync({type:"blob"}).then((content) => {
+      saveAs(content, "archive.zip");
+    });
+
+
   }
 
   useEffect(() => {
-    fetchDotfiles();
+    fetchConfig();
   }, []);
 
   return (
     <div className="app">
       <div className="sidebar">
-        {config !== undefined && <Tree dotfiles={config.dotfiles} />}
+        {config !== undefined && <Files files={config.files} />}
       </div>
       <div className="body">
         <div className="variables">

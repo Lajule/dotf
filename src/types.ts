@@ -1,11 +1,6 @@
 export interface Config {
   variables: ReadonlyArray<Variable>,
-  dotfiles: ReadonlyArray<Node>
-}
-
-export interface Node {
-  file: string,
-  children?: ReadonlyArray<Node>
+  files: ReadonlyArray<string>
 }
 
 export interface Variable {

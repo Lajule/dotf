@@ -9,17 +9,8 @@
 	    "value": "foo"
 	}
     ],
-    "dotfiles": [
-	{
-	    "file": ".tmux.conf"
-	},
-	{
-	    "file": ".emacs.d",
-	    "children": [
-		{
-		    "file": "init.el"
-		}
-	    ]
-	}
+    "files": [
+	".tmux.conf",
+	".emacs.d/init.el"
     ]
 }
