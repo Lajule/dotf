@@ -1,5 +1,7 @@
 ;;; package --- Summary
 
+;;; {{ foo }}
+
 ;;; Commentary:
 
 ;;; Code:

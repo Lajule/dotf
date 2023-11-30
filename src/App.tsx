@@ -1,51 +1,74 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {saveAs} from 'file-saver';
 import Mustache from 'mustache';
 import JSZip from 'jszip';
 import './App.css';
 import {Code} from './Code';
-import {Form} from './Form';
 import {Files} from './Files';
-import {Config} from './types';
+import {Variables} from './Variables';
 
-const sampleCode = '{"foo": "{{bar}}"}';
+const generateZip = async () => {
+  const zip = new JSZip();
+  zip.file("Hello.txt", "Hello World\n");
+
+  const content = await zip.generateAsync({type:"blob"});
+  saveAs(content, "archive.zip");
+}
 
 function App() {
-  const [config, setConfig] = useState<Config>();
+  const [variables, setVariables] = useState({});
+  const [files, setFiles] = useState([]);
+  const [content, setContent] = useState("");
+  const [preview, setPreview] = useState("");
 
-  const fetchConfig = async () => {
-    const response = await fetch('config.json');
-    setConfig(await response.json());
+  const fetchVariables = async () => {
+    const response = await fetch('variables.json');
+    setVariables(await response.json());
+  };
 
-
-    const zip = new JSZip();
-    zip.file("Hello.txt", "Hello World\n");
-    zip.generateAsync({type:"blob"}).then((content) => {
-      saveAs(content, "archive.zip");
-    });
-
-
-  }
+  const fetchFiles = async () => {
+    const response = await fetch('files.json');
+    setFiles(await response.json());
+  };
 
   useEffect(() => {
-    fetchConfig();
+    fetchVariables();
+    fetchFiles();
   }, []);
+
+  useEffect(() => {
+    setPreview(Mustache.render(content, variables));
+  }, [content, variables]);
+
+
+  const onSelected = useCallback(async (index: number) => {
+    if (files.length > 0) {
+      const response = await fetch(encodeURI('/' + files[index]));
+      const text = await response.text();
+      setContent(text);
+    }
+  }, [files]);
 
   return (
     <div className="app">
       <div className="sidebar">
-        {config !== undefined && <Files files={config.files} />}
+        <div className="files">
+          <Files files={files} onSelected={onSelected} />
+        </div>
+        <div className="toolbar">
+          <button onClick={generateZip}>zip</button>
+        </div>
       </div>
       <div className="body">
         <div className="variables">
-          {config !== undefined && <Form variables={config.variables} />}
+          <Variables variables={variables} />
         </div>
         <div className="file">
           <div className="template">
-            <textarea defaultValue="It was a dark and stormy night..."></textarea>
+            <textarea value={content} readOnly></textarea>
           </div>
           <div className="preview">
-            <Code content={Mustache.render(sampleCode, {bar: "foo bar"})} />
+            <Code content={preview} />
           </div>
         </div>
       </div>

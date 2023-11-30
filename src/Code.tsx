@@ -1,4 +1,4 @@
-import {FC, useEffect, useRef} from 'react';
+import {FC, useEffect} from 'react';
 import hljs from 'highlight.js';
 import bash from 'highlight.js/lib/languages/bash';
 import json from 'highlight.js/lib/languages/json';
@@ -15,16 +15,12 @@ interface CodeProps {
 }
 
 export const Code: FC<CodeProps> = ({content}) => {
-  const ref = useRef<HTMLPreElement>(null);
-
   useEffect(() => {
-    if (ref.current) {
-      hljs.highlightElement(ref.current);
-    }
+    hljs.highlightAll();
   }, []);
 
   return (
-    <pre ref={ref} className="codeblock">
+    <pre className="codeblock">
       <code>{content.trim()}</code>
     </pre>
   );
