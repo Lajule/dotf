@@ -1,0 +1,13 @@
+#!/bin/bash
+
+TYPE="$(gum choose "Fix" "Feat" "Version")"
+if [[ -z "${TYPE}" ]]; then
+	exit 0
+fi
+
+MESSAGE="$(gum input --value "$TYPE: " --placeholder "Summary of this change")"
+if [[ -z "${MESSAGE}" ]]; then
+	exit 0
+fi
+
+gum confirm "Commit changes (${MESSAGE})?" && git commit -m "$MESSAGE"

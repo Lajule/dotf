@@ -1,0 +1,7 @@
+leftDelim: '%{'
+rightDelim: '}%'
+inputDir: .
+outputDir: .tmp
+context:
+  .:
+    url: context.yaml

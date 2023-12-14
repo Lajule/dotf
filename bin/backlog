@@ -1,0 +1,50 @@
+#!/bin/bash
+
+JIRA_USER='%{ .backlog.jiraUser }%'
+JIRA_PROJECT=%{ .backlog.jiraProject }%
+JIRA_ISSUETYPE=%{ .backlog.jiraIssueType }%
+
+if (( $# < 1 )); then
+	echo 'Missing arguments' >&2
+	exit 1
+fi
+
+rep="$(curl -s \
+  --request POST \
+  --url '%{ .backlog.jiraURL }%/rest/api/3/issue' \
+  --user "${JIRA_USER}" \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --data "{
+  \"fields\": {
+    \"summary\": \"$1\",
+    \"issuetype\": {
+      \"id\": \"${JIRA_ISSUETYPE}\"
+    },
+    \"project\": {
+      \"key\": \"${JIRA_PROJECT}\"
+    },
+    \"description\": {
+      \"type\": \"doc\",
+      \"version\": 1,
+      \"content\": [
+        {
+          \"type\": \"paragraph\",
+          \"content\": [
+            {
+              \"text\": \"${2:-"No description"}\",
+              \"type\": \"text\"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}" | jq -r '.key')"
+
+if [[ "${rep}" = "null" ]]; then
+	echo 'Issue not created' >&2
+	exit 1
+fi
+
+printf "%{ .backlog.jiraURL }%/browse/%s\n" "${rep}"

@@ -1,0 +1,28 @@
+sshHosts:
+  - alias: dev
+    hostName: dev.io
+    port: 22
+    fowardAgent: yes
+    user: root
+privateKey: |
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  YOUR PRIVATE KEY
+  -----END OPENSSH PRIVATE KEY-----
+publicKey: YOUR PUBLIC KEY
+knownHosts:
+  - "A KNOWN HOST"
+githubToken: YOUR GITHUB TOKEN
+backlog:
+  jiraUser: YOUR JIRA USER WITH TOKEN
+  jiraProject: PRJ
+  jiraIssueType: 10000
+  jiraURL: https://company.atlassian.net
+git:
+  gitUser: yourname@email.com
+  gitName: Your NAME
+github:
+  githubName: Name
+  githubToken: TOKEN
+dockerRegistries:
+  - host: registry.io
+    credentials: CREDENTIALS

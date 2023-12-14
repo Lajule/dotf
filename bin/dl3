@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if (( $# < 4 )); then
+	echo 'Missing arguments' >&2
+	exit 1
+fi
+
+UTC="$(date -R --utc)"
+
+http -d "$1/$2" \
+	"Host:$1" \
+	"Date:${UTC}" \
+	"Authorization:AWS $3:$(printf "GET\n\n\n%s\n/%s" "${UTC}" "$2" | openssl sha1 -hmac "$4" -binary | base64)"
