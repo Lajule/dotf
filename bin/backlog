@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JIRA_USER='%{ .backlog.jiraUser }%'
+JIRA_USER='%{ .backlog.jiraUser }%:%{ .backlog.jiraToken }%'
 JIRA_PROJECT=%{ .backlog.jiraProject }%
 JIRA_ISSUETYPE=%{ .backlog.jiraIssueType }%
 

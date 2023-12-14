@@ -13,7 +13,8 @@ knownHosts:
   - "A KNOWN HOST"
 githubToken: YOUR GITHUB TOKEN
 backlog:
-  jiraUser: YOUR JIRA USER WITH TOKEN
+  jiraUser: yourname@email.com
+  jiraToken: TOKEN
   jiraProject: PRJ
   jiraIssueType: 10000
   jiraURL: https://company.atlassian.net
