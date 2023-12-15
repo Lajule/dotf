@@ -1,9 +1,5 @@
 #!/bin/bash
 
-JIRA_USER='%{ .backlog.jiraUser }%:%{ .backlog.jiraToken }%'
-JIRA_PROJECT=%{ .backlog.jiraProject }%
-JIRA_ISSUETYPE=%{ .backlog.jiraIssueType }%
-
 if (( $# < 1 )); then
 	echo 'Missing arguments' >&2
 	exit 1
@@ -11,18 +7,18 @@ fi
 
 rep="$(curl -s \
   --request POST \
-  --url '%{ .backlog.jiraURL }%/rest/api/3/issue' \
-  --user "${JIRA_USER}" \
+  --url '%{ .jiraURL }%/rest/api/3/issue' \
+  --user '%{ .jiraUser }%:%{ .jiraToken }%' \
   --header 'Accept: application/json' \
   --header 'Content-Type: application/json' \
   --data "{
   \"fields\": {
     \"summary\": \"$1\",
     \"issuetype\": {
-      \"id\": \"${JIRA_ISSUETYPE}\"
+      \"id\": \"%{ .jiraIssueType }%\"
     },
     \"project\": {
-      \"key\": \"${JIRA_PROJECT}\"
+      \"key\": \"%{ .jiraProject }%\"
     },
     \"description\": {
       \"type\": \"doc\",
@@ -47,4 +43,4 @@ if [[ "${rep}" = "null" ]]; then
 	exit 1
 fi
 
-printf "%{ .backlog.jiraURL }%/browse/%s\n" "${rep}"
+printf "%{ .jiraURL }%/browse/%s\n" "${rep}"

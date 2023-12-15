@@ -8,22 +8,18 @@ privateKey: |
   -----BEGIN OPENSSH PRIVATE KEY-----
   YOUR PRIVATE KEY
   -----END OPENSSH PRIVATE KEY-----
-publicKey: YOUR PUBLIC KEY
+publicKey: "YOUR PUBLIC KEY"
 knownHosts:
   - "A KNOWN HOST"
-githubToken: YOUR GITHUB TOKEN
-backlog:
-  jiraUser: yourname@email.com
-  jiraToken: TOKEN
-  jiraProject: PRJ
-  jiraIssueType: 10000
-  jiraURL: https://company.atlassian.net
-git:
-  gitUser: yourname@email.com
-  gitName: Your NAME
-github:
-  githubName: Name
-  githubToken: TOKEN
+jiraUser: yourname@email.com
+jiraToken: "YOUR JIRA TOKEN"
+jiraProject: PRJ
+jiraIssueType: 10000
+jiraURL: https://company.atlassian.net
+gitUser: yourname@email.com
+gitName: Your NAME
+githubNickname: Nickname
+githubToken: "YOUR GITHUB TOKEN"
 dockerRegistries:
   - host: registry.io
     credentials: CREDENTIALS

@@ -1,6 +1,6 @@
 [user]
-	email = %{ .git.gitUser }%
-	name = %{ .git.gitName }%
+	email = %{ .gitUser }%
+	name = %{ .gitName }%
 
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
