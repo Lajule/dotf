@@ -3,7 +3,6 @@
 context.yaml
 dotf.tar.gz
 Makefile
-README.md
 .git
 .tmp
 *~
