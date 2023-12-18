@@ -1,8 +1,0 @@
-.gomplateignore
-.gomplate.yaml
-context.yaml
-dotf.tar.gz
-Makefile
-.git
-.tmp
-*~
