@@ -11,7 +11,6 @@ alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
-alias eff='${EDITOR} $(fzf -m)'
 alias cd='zd'
 alias bat='batcat'
 alias cat='bat --paging=never'
@@ -21,6 +20,7 @@ alias timestamp='date "+%s"'
 alias size='du -sh'
 
 e() { if (( $# == 0 )); then emacs -nw . ; else emacs -nw "$@"; fi; }
+eff() { mapfile -t files < <(fzf -m); emacs -nw "${files[@]}"; }
 chall() { chgrp "$@" && chown "$@"; }
 uuid() { cat /proc/sys/kernel/random/uuid; }
 www() { (cd "${2:-${PWD}}" && python -m 'http.server' "${1:-8080}"); }
