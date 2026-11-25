@@ -13,8 +13,9 @@
 (global-display-line-numbers-mode +1)
 (line-number-mode +1)
 (show-paren-mode +1)
-(global-flycheck-mode +1)
 (xterm-mouse-mode +1)
+
+(global-flycheck-mode +1)
 (xclip-mode +1)
 
 (require 'org)
@@ -23,4 +24,4 @@
 (require 'ob-sql)
 
 (custom-set-variables
- '(package-selected-packages '(magit xclip flycheck)))
+ '(package-selected-packages '(magit flycheck xclip)))
