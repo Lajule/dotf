@@ -1,7 +1,7 @@
 eval "$(mise activate bash)"
 eval "$(starship init bash --print-full-init)"
-eval "$(zoxide init bash)"
 eval "$(try init ~/Work/tries)"
+eval "$(zoxide init bash)"
 
 export EDITOR='emacs -nw'
 export BAT_THEME='ansi'
@@ -15,13 +15,13 @@ alias cd='zd'
 alias bat='batcat'
 alias cat='bat --paging=never'
 alias fd='fdfind'
-alias rm~='fd -H '.*~' -tf -X rm -i'
 alias timestamp='date "+%s"'
 alias size='du -sh'
 
 e() { if (( $# == 0 )); then emacs -nw . ; else emacs -nw "$@"; fi; }
 eff() { mapfile -t files < <(fzf -m); emacs -nw "${files[@]}"; }
 chall() { chgrp "$@" && chown "$@"; }
+rm~() { fd -H '.*~' -tf -X rm -i; }
 uuid() { cat /proc/sys/kernel/random/uuid; }
 www() { (cd "${2:-${PWD}}" && python -m 'http.server' "${1:-8080}"); }
 
