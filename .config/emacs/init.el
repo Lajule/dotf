@@ -1,7 +1,6 @@
-(setq inhibit-startup-screen t)
-
-(setq-default truncate-lines t
-              show-trailing-whitespace t)
+(setopt inhibit-startup-screen t
+        show-trailing-whitespace t
+        truncate-lines t)
 
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
