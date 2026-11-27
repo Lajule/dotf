@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+pacman -S gum bat fzf eza zoxide ripgrep fd fastfetch lazygit lazydocker btop mise starship
+yay -S try cliamp
