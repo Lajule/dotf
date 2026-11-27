@@ -1,28 +1,43 @@
-(setopt inhibit-startup-screen t
-        show-trailing-whitespace t
-        truncate-lines t)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org") t)
+(package-initialize)
 
-(blink-cursor-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(unless package-archive-contents
+  (package-refresh-contents))
 
-(column-number-mode +1)
-(delete-selection-mode +1)
-(global-display-line-numbers-mode +1)
-(line-number-mode +1)
-(show-paren-mode +1)
-(xterm-mouse-mode +1)
+(require 'use-package)
+(setopt use-package-always-ensure t)
 
-(global-flycheck-mode +1)
-(xclip-mode +1)
+(use-package emacs
+  :ensure nil
+  :init
+  (setopt inhibit-startup-screen t
+          show-trailing-whitespace t
+          truncate-lines t)
+  :config
+  (dolist (mode '(blink-cursor-mode menu-bar-mode scroll-bar-mode tool-bar-mode))
+    (funcall mode -1))
+  (dolist (mode '(column-number-mode
+                  delete-selection-mode
+                  global-display-line-numbers-mode
+                  show-paren-mode
+                  xterm-mouse-mode))
+    (funcall mode 1)))
 
-(require 'org)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((C . t)
-   (shell . t)
-   (sql . t)))
+(use-package org
+  :ensure nil
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (shell . t)
+     (sql . t))))
 
-(custom-set-variables
- '(package-selected-packages '(magit flycheck xclip)))
+(use-package magit
+  :defer t)
+
+(use-package flycheck
+  :init (global-flycheck-mode 1))
+
+(use-package xclip
+  :init (xclip-mode 1))
