@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+brew update
+brew install gum bat fzf eza zoxide ripgrep fd try fastfetch lazygit lazydocker btop mise starship
+brew install bjarneo/cliamp/cliamp
