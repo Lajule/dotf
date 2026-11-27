@@ -18,9 +18,11 @@
 (xclip-mode +1)
 
 (require 'org)
-(require 'ob-C)
-(require 'ob-shell)
-(require 'ob-sql)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((C . t)
+   (shell . t)
+   (sql . t)))
 
 (custom-set-variables
  '(package-selected-packages '(magit flycheck xclip)))
